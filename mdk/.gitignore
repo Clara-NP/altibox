@@ -1,0 +1,8 @@
+/DebugConfig/
+/Listings/
+/Objects/
+/*.uvguix.*
+/*.uvoptx
+/EventRecorderStub.scvd
+/JLinkLog.txt
+/JLinkSettings.ini
