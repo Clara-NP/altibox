@@ -42,7 +42,7 @@
  */
 static const gpioConfig_t s_gpios[] = 
 {
-    { LED_SYS,                          GPIO_CHIP_SOC, _PB2, GPIO_DIR_OUTPUT, GPIO_FLAG_ACTIVE_LOW},            
+    { LED_SYS,                          GPIO_CHIP_SOC, _PB12, GPIO_DIR_OUTPUT, GPIO_FLAG_ACTIVE_LOW},            
 };
 
 /**
