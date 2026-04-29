@@ -379,7 +379,7 @@ int npcpEventHandle(npcpSlaveService_t *service, uint16_t event, const void *eve
 #ifdef CONFIG_NPCP_UPGRADE_ENABLE        
         case NPCP_EVENT_OTA_START:
         {            
-            return npcpSlaveUpgradeGeneralCheck((const npcpStartImageUpgrade_t *)eventData, NPCP_HWTYPE_POWERBOX_V0, DEVICE_SW_VERSION);
+            return npcpSlaveUpgradeGeneralCheck((const npcpStartImageUpgrade_t *)eventData, NPCP_HWTYPE_ALTIBOX_V0, DEVICE_SW_VERSION);
         }
 #endif         
         case NPCP_EVENT_CUSTOM_COMMAND:
@@ -388,7 +388,7 @@ int npcpEventHandle(npcpSlaveService_t *service, uint16_t event, const void *eve
 
             switch(frame->command)
             {
-                case CMD_POWERBOX_GET_STATUS:
+                case CMD_ALTIBOX_GET_STATUS:
                 {
                     struct GetAltiBoxStatusResponse ack = { 0 };
 
@@ -410,6 +410,21 @@ int npcpEventHandle(npcpSlaveService_t *service, uint16_t event, const void *eve
     }
 
     return RET_NO_SUPPORTED;
+}
+
+
+bool altiboxOtaBusy(void)
+{
+#ifdef CONFIG_NPCP_UPGRADE_ENABLE
+    localManager_t *m = getInstance();
+    if (m->slaveService == NULL)
+    {
+        return false;
+    }
+    return npcpServiceUpgradeBusy(m->slaveService);
+#else
+    return false;
+#endif
 }
 
 

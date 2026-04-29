@@ -42,7 +42,7 @@
  */
 static const gpioConfig_t s_gpios[] = 
 {
-    { LED_SYS,                          GPIO_CHIP_SOC, _PB12, GPIO_DIR_OUTPUT, GPIO_FLAG_ACTIVE_LOW},            
+    { LED_SYS,                          GPIO_CHIP_SOC, _PB2, GPIO_DIR_OUTPUT, GPIO_FLAG_ACTIVE_LOW},            
 };
 
 /**
@@ -145,8 +145,8 @@ static const adcConfig_t s_adcs[] =
  */
 static const i2cConfig_t s_i2cs[] = 
 {
-    {.id = I2C_MAIN, .chip = I2C_CHIP_SOC, .port = _I2C1, .rate = 100000, .chipParameter = NULL},
-    {.id = I2C_MAIN, .chip = I2C_CHIP_SOC, .port = _I2C2, .rate = 100000, .chipParameter = NULL}
+    {.id = I2C_MAIN, .chip = I2C_CHIP_GPIO_SIMULATE, .port = _I2C1, .rate = 100000, .chipParameter = "scl:24,sda:25"},
+    {.id = I2C_BMP585, .chip = I2C_CHIP_GPIO_SIMULATE, .port = _I2C2, .rate = 100000, .chipParameter = "scl:26,sda:27"}
     //{.id = I2C_MAIN, .chip = I2C_CHIP_GPIO_SIMULATE, .port = _I2C2, .rate = 100000, .chipParameter = "scl:26,sda:27"}
 };
 
@@ -156,7 +156,7 @@ static const i2cConfig_t s_i2cs[] =
  * 
  */
 
-static const i2cDeviceConfig_t s_bmp585 = {.id = BMP585_BOARD, .bus = I2C_MAIN, .address = 0x47};
+static const i2cDeviceConfig_t s_bmp585 = {.id = BMP585_BOARD, .bus = I2C_BMP585, .address = 0x47};
 
 /**
  * @brief 定义RTC时钟芯片

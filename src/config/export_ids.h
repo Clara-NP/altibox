@@ -65,6 +65,7 @@ enum EXPORT_ADC
 enum EXPORT_I2C
 {
     I2C_MAIN = 0,
+    I2C_BMP585,
     I2C_EXTEND,
 
     EXPORT_I2C_MAX_NUM,

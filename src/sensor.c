@@ -17,6 +17,7 @@
 
 #include "config/export_ids.h"
 #include "config/product_config.h"
+#include "altibox.h"
 #include "sensor.h"
 
 #define TRACE_TAG "sensor"
@@ -148,6 +149,14 @@ static int initAndSync(void *userData, uint16_t flag, uint16_t index)
 static int getBoardTemperatureAndHumitidy(void *userData, uint16_t flag, uint16_t index)
 {
     sensorManager_t *pm = (sensorManager_t *)userData;
+
+    /// 20260429 - 升级过程中执行该任务可能会造成无法响应升级指令
+    if (altiboxOtaBusy())
+    {
+        PREPARE_NEXT_PROCESS(pm);
+        return TASK_FORWARD;
+    }
+
     const char *name = "bmp585";
 
     switch(pm->processState)
@@ -198,12 +207,10 @@ static int getBoardTemperatureAndHumitidy(void *userData, uint16_t flag, uint16_
         case STATE_BMP585_READ_RESULT:
         {
             // 读结果，如果超时，表示失败
-            int ret = bmp585ReadData(BMP585_BOARD, &pm->boardAltimeter);
-            ilog("bmp585 read result, ret=%d, temperature=%.3f", ret, pm->boardTemperature);
+            int ret = bmp585ReadData(BMP585_BOARD, &pm->boardAltimeter, &pm->boardTemperature);
+            dlog("bmp585 read result, ret=%d, altitude=%.3f, temperature=%.3f", ret, pm->boardAltimeter, pm->boardTemperature);
             if (ret == RET_SUCCESS)
             {
-                // TODO 获取温度
-                pm->boardTemperature = 0;
                 if (setSuccess(name, &pm->bmp585State))
                 {
                     ilog("bmp585 T=%.3fC H=%.3f%%", pm->boardTemperature, pm->boardAltimeter);

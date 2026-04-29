@@ -67,7 +67,7 @@
 #define CONFIG_TRACE_VIA_UART 0
 #endif 
 
-//#define CONFIG_DRIVER_I2C_GPIO_SIMULATE 1
+#define CONFIG_GPIO_I2C_BUS_MAX_NUM   2
 
 #endif // __FRAMEWORK_CONFIG_H__
 

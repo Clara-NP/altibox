@@ -36,4 +36,9 @@ void altiBoxInit(void);
  */
 void altiBoxMainTick(void);
 
+/**
+ * @brief 是否正在进行 NPCP OTA（与协议升级状态机一致）
+ */
+bool altiboxOtaBusy(void);
+
 #endif // __POWERBOX_H__
