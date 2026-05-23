@@ -393,13 +393,8 @@ int npcpEventHandle(npcpSlaveService_t *service, uint16_t event, const void *eve
                     struct GetAltiBoxStatusResponse ack = { 0 };
 
                     ack.deviceState = htoles(m->deviceState);
-                    ack.altimeter = htoles(floatToUint32(sensorGetFloat(BOARD_ALTIMETER), 10.0f));
-                    ack.temperature =  htoles(sensorGetFloat(BOARD_TEMPERATURE)*1.0f);
-
-                    // float temperature = 100.111;
-                    // float altimeter = 200.222;
-                    // ack.altimeter = htolel(altimeter * 10);
-                    // ack.temperature = htoles(temperature * 10);
+                    ack.altimeter = htoles(floatToUint32(sensorGetFloat(BOARD_ALTIMETER), 100.0f));
+                    ack.temperature = (int16_t)(sensorGetFloat(BOARD_TEMPERATURE)*100.0f);
                     npcpSendResponse(service, frame->sequence, frame->command, (const uint8_t *)&ack, sizeof(ack));
                     return RET_SUCCESS;
                 }
