@@ -53,7 +53,7 @@ static const serialConfig_t s_serials[] =
 {
     /// CORE USART1 PA9(tx) PA10(rx)
     {
-        .id = SERIAL_RS485_1, .chip = SERIAL_CHIP_SOC, .port = _UART1, .setting = _UART_SETTING_DEFAULT(115200), 
+        .id = SERIAL_RS485_1, .chip = SERIAL_CHIP_SOC, .port = _UART1, .setting = _UART_SETTING_DEFAULT(9600), 
         .control = _UART_TX_DMA | _UART_RX_DMA | _UART_RS485_GPIO(_PA8), .chipParameter = NULL
     },  
 };

@@ -12,7 +12,7 @@
 
 /// 配置版本号
 #define CONFIG_VERSION_MAJOR   1
-#define CONFIG_VERSION_MINOR   10
+#define CONFIG_VERSION_MINOR   11
 
 
 //---------------------存储管理-------------------------
