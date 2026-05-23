@@ -784,7 +784,7 @@
             <RunUserProg1>1</RunUserProg1>
             <RunUserProg2>1</RunUserProg2>
             <UserProg1Name>fromelf --bin --output .\Objects\altibox_app.bin .\Objects\altibox_app.axf</UserProg1Name>
-            <UserProg2Name>mcuimage -v 1.0 -t b -o 512 -H -b 0x1000 -B ..\framework\project\mini_bootloader\released\mboot_stm32f103_4xx4_v1.0.2.bin -A .\Objects\altibox_app.bin  altibox_hw31</UserProg2Name>
+            <UserProg2Name>mcuimage -v 1.10 -t b -o 512 -H -b 0x1000 -B ..\framework\project\mini_bootloader\released\mboot_stm32f103_4xx4_v1.0.2.bin -A .\Objects\altibox_app.bin  altibox_hw31</UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
             <nStopA1X>0</nStopA1X>
